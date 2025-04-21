@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe - Best of 3</title>
+  <a href="Scratch.html">Scratch Page</a>
+  <style> 
+    
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+      border: 2px solid #444;
+      font-size: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .cell:hover {
+      background-color: #f0f0f0;
+    }
+
+    .disabled {
+      pointer-events: none;
+      color: #888;
+    }
+
+    #status, #score {
+      margin: 10px 0;
+      font-size: 1.2rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tic Tac Toe</h1>
+  <div id="score">Player: 0 | Computer: 0</div>
+  <div id="status">Your move</div>
+  <div id="board"></div>
+  <button onclick="resetGame()">Reset Match</button>
+
+  <script>
+    const boardEl = document.getElementById("board");
+    const statusEl = document.getElementById("status");
+    const scoreEl = document.getElementById("score");
+
+    let board = Array(9).fill(null);
+    let playerScore = 0;
+    let computerScore = 0;
+    let roundOver = false;
+
+    const winCombos = [
+      [0,1,2],[3,4,5],[6,7,8], // rows
+      [0,3,6],[1,4,7],[2,5,8], // columns
+      [0,4,8],[2,4,6]          // diagonals
+    ];
+
+    function createBoard() {
+      boardEl.innerHTML = '';
+      board.forEach((val, i) => {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.dataset.index = i;
+        cell.textContent = val || '';
+        if (!val && !roundOver) {
+          cell.addEventListener("click", playerMove);
+        } else {
+          cell.classList.add("disabled");
+        }
+        boardEl.appendChild(cell);
+      });
+    }
+
+    function playerMove(e) {
+      const idx = e.target.dataset.index;
+      if (board[idx] || roundOver) return;
+
+      board[idx] = 'X';
+      logMove("Player", idx);
+      checkGameState();
+
+      if (!roundOver) {
+        setTimeout(() => {
+          computerMove();
+          checkGameState();
+        }, 300);
+      }
+    }
+
+    function computerMove() {
+      const empty = board.map((v, i) => v ? null : i).filter(i => i !== null);
+      if (!empty.length) return;
+      const move = empty[Math.floor(Math.random() * empty.length)];
+      board[move] = 'O';
+      logMove("Computer", move);
+      createBoard();
+    }
+
+    function checkGameState() {
+      createBoard();
+      const winner = getWinner();
+      if (winner) {
+        roundOver = true;
+        if (winner === 'X') {
+          playerScore++;
+          statusEl.textContent = "🎉 You win the round!";
+        } else {
+          computerScore++;
+          statusEl.textContent = "💻 Computer wins the round.";
+        }
+        scoreEl.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
+        if (playerScore === 2 || computerScore === 2) {
+          statusEl.textContent += playerScore === 2 ? " 🏆 You win the match!" : " 🤖 Computer wins the match!";
+        } else {
+          setTimeout(startNextRound, 2000);
+        }
+      } else if (board.every(cell => cell)) {
+        roundOver = true;
+        statusEl.textContent = "🤝 It's a tie!";
+        setTimeout(startNextRound, 2000);
+      }
+    }
+
+    function getWinner() {
+      for (let combo of winCombos) {
+        const [a,b,c] = combo;
+        if (board[a] && board[a] === board[b] && board[b] === board[c]) {
+          return board[a];
+        }
+      }
+      return null;
+    }
+
+    function startNextRound() {
+      board = Array(9).fill(null);
+      roundOver = false;
+      statusEl.textContent = "Your move";
+      createBoard();
+    }
+
+    function resetGame() {
+      board = Array(9).fill(null);
+      playerScore = 0;
+      computerScore = 0;
+      roundOver = false;
+      scoreEl.textContent = "Player: 0 | Computer: 0";
+      statusEl.textContent = "Your move";
+      createBoard();
+    }
+
+    function logMove(player, index) {
+      console.log(`${player} selected cell ${index}`);
+    }
+
+    createBoard();
+  </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Fan Page</title>
+    <link rel="stylesheet" href="startbootstrap-clean-blog-gh-pages/css/scratch.css">
+    <style>
+        /* Only underline links on hover in nav */
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Prevent paragraphs and list items from underlining on hover */
+        p:hover,
+        li:hover {
+            text-decoration: none;
+        }
+
+        /* Center bullets and numbers with their text */
+        ol, ul {
+            list-style-position: inside;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .intro-section {
+            text-align: center;
+        }
+
+        /* Ensure video is centered */
+        iframe {
+            display: block;
+            margin: 2em auto;
+        }
+
+        /* Tableau styling */
+        .tableau-section {
+            background-color: #9b59b6;
+            padding: 2em;
+            margin: 1em;
+            border-radius: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#intro">Introduction</a>
+        <a href="#video">Minecraft Video</a>
+        <a href="#tableau">Tableau Graph</a>
+        <a href="webapp.html">Tic-Tac-Toe</a>
+        <a href="startbootstrap-clean-blog-gh-pages/index.html">Professional Page</a>
+    </nav>
+
+<!-- Introduction Section -->
+<div class="intro-section" id="intro">
+    <h1>Welcome to the Minecraft Fan Page!</h1>
+    <p>Minecraft is one of the most popular video games of all time. On this page, we explore the wonders of Minecraft,
+        from the basics to fun facts!</p>
+
+    <ol>
+        <li>
+            Minecraft Basics:
+            <ul> 
+         <li>Building</li>
+                <li>Mining</li>
+                <li>Survival Mode</li>
+                <li>Creative Mode</li>
+            </ul>
+        </li>
+        <li>
+            Interesting Facts about Minecraft:
+            <ul>
+                <li>Over 200 million copies sold</li>
+                <li>Available on almost every platform</li>
+                <li>Constantly updated with new features</li>
+            </ul>
+        </li>
+    </ol>
+   
+      
+
+    <!-- Image Section -->
+    <img src="startbootstrap-clean-blog-gh-pages/assets/img/imagesminecraft.png.png" alt="Minecraft Screenshot"
+        style="max-width: 600px; width: 100%; border-radius: 8px; margin: 1em auto; display: block;">
+</div>
+
+    <!-- Minecraft Video Section -->
+    <div id="video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Pq5OqjdELc8?si=EObz-_ba2tkYpqlh"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <!-- Tableau Graph Section -->
+    <div class="tableau-section" id="tableau">
+        <h2>Minecraft Potion Calculator</h2>
+        <div class='tableauPlaceholder' id='viz1745273183015' style='position: relative'>
+            <noscript><a href='#'><img alt='Minecraft Potion Calculator '
+                        src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mi&#47;MinecraftPotionsCalculator&#47;MinecraftPotionCalculator&#47;1_rss.png'
+                        style='border: none' /></a></noscript>
+            <object class='tableauViz' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='embed_code_version' value='3' />
+                <param name='site_root' value='' />
+                <param name='name' value='MinecraftPotionsCalculator&#47;MinecraftPotionCalculator' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image'
+                    value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Mi&#47;MinecraftPotionsCalculator&#47;MinecraftPotionCalculator&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='en-US' />
+            </object>
+        </div>
+        <script type='text/javascript'>
+            var divElement = document.getElementById('viz1745273183015');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            vizElement.style.width = '850px';
+            vizElement.style.height = '677px';
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with love by Minecraft fans. All rights to Minecraft belong to Mojang Studios.</p>
+    </footer>
+</body>
+
+</html>
+
+
+
